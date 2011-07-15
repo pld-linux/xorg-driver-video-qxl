@@ -1,0 +1,15 @@
+For spice-protocol 0.8.0 only; drop after later release
+--- xf86-video-qxl-0.0.14/src/qxl_driver.c.orig	2011-07-14 19:58:56.000000000 +0200
++++ xf86-video-qxl-0.0.14/src/qxl_driver.c	2011-07-15 19:34:51.417416343 +0200
+@@ -42,6 +42,11 @@
+ #endif
+ #define CHECK_POINT()
+ 
++/* defined in spice-protocol > 0.8.0 */
++#define QXL_COMMAND_RING_SIZE 32
++#define QXL_CURSOR_RING_SIZE 32
++#define QXL_RELEASE_RING_SIZE 8
++
+ int
+ qxl_garbage_collect (qxl_screen_t *qxl)
+ {
