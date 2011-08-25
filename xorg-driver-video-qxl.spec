@@ -6,7 +6,7 @@ Summary:	X.org video driver for QXL virtual GPU
 Summary(pl.UTF-8):	Sterownik obrazu X.org dla wirtualnych procesorów graficznych QXL
 Name:		xorg-driver-video-qxl
 Version:	0.0.16
-Release:	1
+Release:	2
 License:	MIT
 Group:		X11/Applications
 Source0:	http://xorg.freedesktop.org/releases/individual/driver/xf86-video-qxl-%{version}.tar.bz2
@@ -30,6 +30,7 @@ BuildRequires:	xorg-xserver-server-devel >= 1.0.99.901
 %{?requires_xorg_xserver_videodrv}
 Requires:	xorg-lib-libpciaccess >= 0.10.0
 Requires:	xorg-xserver-server >= 1.0.99.901
+Provides:	xorg-driver-video
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -39,15 +40,15 @@ project.
 
 %description -l pl.UTF-8
 Sterownik obrazu X.org dla wirtualnych procesorów graficznych QXL,
-które można znaleźć w systemie RedHat Enterprise Virtualisation oraz
-w projekcie spice.
+które można znaleźć w systemie RedHat Enterprise Virtualisation oraz w
+projekcie spice.
 
 %package -n spice-xserver
 Summary:	Xspice - X server and Spice server in one
 Summary(pl.UTF-8):	Xspice - serwer X oraz serwer Spice w jednym
 Group:		X11/Applications
-Requires:	xorg-xserver-server >= 1.0.99.901
 Requires:	spice-server-libs >= 0.6.3
+Requires:	xorg-xserver-server >= 1.0.99.901
 
 %description -n spice-xserver
 Xspice is an X server and Spice server in one. It consists of a
