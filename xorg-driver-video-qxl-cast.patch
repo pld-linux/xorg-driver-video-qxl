@@ -1,0 +1,14 @@
+hack to avoid:
+spiceqxl_io_port.c: In function 'qxl_set_mode':
+spiceqxl_io_port.c:175:23: error: cast from pointer to integer of different size [-Werror=pointer-to-int-cast]
+--- xf86-video-qxl-0.0.17/src/spiceqxl_io_port.c.orig	2012-03-14 17:49:59.000000000 +0100
++++ xf86-video-qxl-0.0.17/src/spiceqxl_io_port.c	2012-03-16 16:08:58.241292253 +0100
+@@ -172,7 +172,7 @@
+ static void qxl_set_mode(qxl_screen_t *qxl, int modenr)
+ {
+     struct QXLMode *mode = qxl->modes + modenr;
+-    uint64_t devmem = (uint64_t)qxl->ram;
++    uint64_t devmem = (size_t)qxl->ram;
+     QXLSurfaceCreate surface = {
+         .width      = mode->x_res,
+         .height     = mode->y_res,

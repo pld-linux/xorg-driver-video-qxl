@@ -5,12 +5,13 @@
 Summary:	X.org video driver for QXL virtual GPU
 Summary(pl.UTF-8):	Sterownik obrazu X.org dla wirtualnych procesorów graficznych QXL
 Name:		xorg-driver-video-qxl
-Version:	0.0.16
-Release:	3
+Version:	0.0.17
+Release:	1
 License:	MIT
 Group:		X11/Applications
 Source0:	http://xorg.freedesktop.org/releases/individual/driver/xf86-video-qxl-%{version}.tar.bz2
-# Source0-md5:	21108fae53c14eb2c65413b55a3c8778
+# Source0-md5:	c0ee45ce06654b9f2e6ddac478d5fbd6
+Patch0:		%{name}-cast.patch
 URL:		http://xorg.freedesktop.org/
 BuildRequires:	autoconf >= 2.60
 BuildRequires:	automake
@@ -72,6 +73,7 @@ udostępnia wejście klawiatury i myszy oraz wyjście obrazu.
 
 %prep
 %setup -q -n xf86-video-qxl-%{version}
+%patch0 -p1
 
 %build
 %{__libtoolize}
@@ -104,6 +106,6 @@ rm -rf $RPM_BUILD_ROOT
 %files -n spice-xserver
 %defattr(644,root,root,755)
 %doc README.xspice examples/spiceqxl.xorg.conf.example
-%attr(755,root,root) %{_bindir}/xspice
+%attr(755,root,root) %{_bindir}/Xspice
 %attr(755,root,root) %{_libdir}/xorg/modules/drivers/spiceqxl_drv.so
 %endif
