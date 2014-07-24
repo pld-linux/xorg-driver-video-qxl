@@ -5,12 +5,12 @@
 Summary:	X.org video driver for QXL virtual GPU
 Summary(pl.UTF-8):	Sterownik obrazu X.org dla wirtualnych procesorów graficznych QXL
 Name:		xorg-driver-video-qxl
-Version:	0.1.1
-Release:	4
+Version:	0.1.2
+Release:	1
 License:	MIT
 Group:		X11/Applications
 Source0:	http://xorg.freedesktop.org/releases/individual/driver/xf86-video-qxl-%{version}.tar.bz2
-# Source0-md5:	39f0721e83bc3bb2aba5c0379616ddbc
+# Source0-md5:	6a645acb2c462c09b94cd926ca401a86
 Patch0:		%{name}-cast.patch
 URL:		http://xorg.freedesktop.org/
 BuildRequires:	autoconf >= 2.60
