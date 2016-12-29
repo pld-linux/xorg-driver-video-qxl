@@ -9,16 +9,13 @@
 Summary:	X.org video driver for QXL virtual GPU
 Summary(pl.UTF-8):	Sterownik obrazu X.org dla wirtualnych procesorów graficznych QXL
 Name:		xorg-driver-video-qxl
-Version:	0.1.4
-Release:	6
+Version:	0.1.5
+Release:	1
 License:	MIT
 Group:		X11/Applications
-Source0:	http://xorg.freedesktop.org/releases/individual/driver/xf86-video-qxl-%{version}.tar.bz2
-# Source0-md5:	41e234f38fe8045eef7ade83c34f6dd4
-Patch0:		%{name}-cast.patch
-Patch1:		libcacard.patch
-Patch2:		xserver-1.19.patch
-URL:		http://xorg.freedesktop.org/
+Source0:	https://xorg.freedesktop.org/releases/individual/driver/xf86-video-qxl-%{version}.tar.bz2
+# Source0-md5:	addb686fce597a452eecd8d8f9fddf15
+URL:		https://xorg.freedesktop.org/
 BuildRequires:	autoconf >= 2.60
 BuildRequires:	automake
 %{?with_pcsc:BuildRequires:	libcacard-devel}
@@ -30,12 +27,14 @@ BuildRequires:	rpmbuild(macros) >= 1.389
 BuildRequires:	spice-protocol >= 0.12.0
 %{?with_xspice:BuildRequires:	spice-server-devel >= 0.6.3}
 BuildRequires:	udev-devel
+BuildRequires:	xorg-lib-libXfont2-devel >= 2
 BuildRequires:	xorg-lib-libpciaccess-devel >= 0.10.0
 BuildRequires:	xorg-proto-fontsproto-devel
 BuildRequires:	xorg-proto-randrproto-devel
 BuildRequires:	xorg-proto-renderproto-devel
 BuildRequires:	xorg-proto-videoproto-devel
 BuildRequires:	xorg-proto-xf86dgaproto-devel
+BuildRequires:	xorg-proto-xproto-devel
 BuildRequires:	xorg-util-util-macros >= 1.4
 BuildRequires:	xorg-xserver-server-devel >= 1.0.99.901
 %{?requires_xorg_xserver_videodrv}
@@ -103,9 +102,6 @@ udostępnia wejście klawiatury i myszy oraz wyjście obrazu.
 
 %prep
 %setup -q -n xf86-video-qxl-%{version}
-%patch0 -p1
-%patch1 -p1
-%patch2 -p1
 
 %build
 %{__libtoolize}
@@ -135,7 +131,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc COPYING ChangeLog README TODO
+%doc COPYING ChangeLog NEWS README TODO
 %attr(755,root,root) %{_libdir}/xorg/modules/drivers/qxl_drv.so
 
 %if %{with pcsc}
