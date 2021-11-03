@@ -1,0 +1,11 @@
+--- xf86-video-qxl-0.1.5/src/qxl_option_helpers.c~	2015-10-12 18:31:14.000000000 +0200
++++ xf86-video-qxl-0.1.5/src/qxl_option_helpers.c	2021-11-03 23:54:07.606993033 +0100
+@@ -34,7 +34,7 @@
+     const char* value = getenv(env_name);
+ 
+     if (!value) {
+-        return options[option_index].value.bool;
++        return options[option_index].value.boolean;
+     }
+     if (strcmp(value, "0") == 0 ||
+         strcasecmp(value, "off") == 0 ||
