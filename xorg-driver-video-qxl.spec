@@ -9,13 +9,12 @@
 Summary:	X.org video driver for QXL virtual GPU
 Summary(pl.UTF-8):	Sterownik obrazu X.org dla wirtualnych procesorów graficznych QXL
 Name:		xorg-driver-video-qxl
-Version:	0.1.5
-Release:	4
+Version:	0.1.6
+Release:	1
 License:	MIT
 Group:		X11/Applications
-Source0:	https://xorg.freedesktop.org/releases/individual/driver/xf86-video-qxl-%{version}.tar.bz2
-# Source0-md5:	addb686fce597a452eecd8d8f9fddf15
-Patch0:		xserver-21.patch
+Source0:	https://xorg.freedesktop.org/releases/individual/driver/xf86-video-qxl-%{version}.tar.xz
+# Source0-md5:	5d3a4ac0f6b21d62ff4e308717ff239f
 URL:		https://xorg.freedesktop.org/
 BuildRequires:	autoconf >= 2.60
 BuildRequires:	automake
@@ -27,6 +26,7 @@ BuildRequires:	pkgconfig >= 1:0.19
 BuildRequires:	rpmbuild(macros) >= 1.389
 BuildRequires:	spice-protocol >= 0.12.0
 %{?with_xspice:BuildRequires:	spice-server-devel >= 0.6.3}
+BuildRequires:	tar >= 1:1.22
 BuildRequires:	udev-devel
 BuildRequires:	xorg-lib-libXfont2-devel >= 2
 BuildRequires:	xorg-lib-libpciaccess-devel >= 0.10.0
@@ -38,6 +38,7 @@ BuildRequires:	xorg-proto-xf86dgaproto-devel
 BuildRequires:	xorg-proto-xproto-devel
 BuildRequires:	xorg-util-util-macros >= 1.4
 BuildRequires:	xorg-xserver-server-devel >= 1.0.99.901
+BuildRequires:	xz
 %{?requires_xorg_xserver_videodrv}
 Requires:	libdrm >= 2.4.46
 Requires:	xorg-lib-libpciaccess >= 0.10.0
@@ -103,9 +104,8 @@ udostępnia wejście klawiatury i myszy oraz wyjście obrazu.
 
 %prep
 %setup -q -n xf86-video-qxl-%{version}
-%patch0 -p1
 
-%{__sed} -E -i -e '1s,#!\s*/usr/bin/python(\s|$),#!%{__python}\1,' \
+%{__sed} -E -i -e '1s,#!\s*/usr/bin/python(\s|$),#!%{__python3}\1,' \
       scripts/Xspice
 
 %build
@@ -136,7 +136,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc COPYING ChangeLog NEWS README TODO
+%doc COPYING ChangeLog NEWS README.md TODO
 %attr(755,root,root) %{_libdir}/xorg/modules/drivers/qxl_drv.so
 
 %if %{with pcsc}
